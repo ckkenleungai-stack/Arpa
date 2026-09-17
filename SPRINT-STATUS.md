@@ -2,20 +2,17 @@
 
 | Field | Value |
 | --- | --- |
-| Time (HKT) | 2026-09-18 02:19 HKT |
-| Scaffold | `/workspace/arpa-scaffold` (single tree — do not fork) |
-| Branch target | `oliver/w1-scaffold` |
-| PR URL | **None yet** |
-| CloudAgent | `bc-f46b2195-1c08-58f9-9581-132a1b73c44d` → **error** (empty transcript); relaunch pending after P0 AR patches |
+| Time (HKT) | 2026-09-18 (landed on GitHub) |
+| Scaffold | this repo (single tree — do not fork) |
+| Branch | `cursor/w1-scaffold-fa2a` (requested `oliver/w1-scaffold`; Cloud Agent naming required `cursor/…-fa2a`) |
+| PR URL | https://github.com/ckkenleungai-stack/Arpa/pull/1 |
+| CloudAgent | landed via Cursor Cloud Agent unpack of Oliver tarball |
 
-## Tests (pre–P0-AR patch)
+## Tests (this land)
 
 ```
-cd /workspace/arpa-scaffold && source .venv/bin/activate
-export PYTHONPATH="packages/control_plane:packages/workflows:packages/gateway:packages/tools:packages/db:packages/ar:packages/evals"
-export ALLOWED_ROOT="$(pwd)/workspace_data"
-pytest -q
-# → 23 passed, 1 warning (P0 AR patch set applied)
+cd /workspace && python3 -m pytest -q
+# → 23 passed, 1 warning
 ```
 
 ## W1 completeness (baseline)
@@ -45,11 +42,11 @@ Theodore P0 AR patches applied on this tree (see `docs/AR-P0-PATCH-NOTES.md`):
 
 ## Blockers
 
-1. **PR:** CloudAgent errored; no commits pushed to GitHub yet. Relaunch/push after P0 patches.
-2. **HG-AUD:** Stays red until emit matches checklist + Felix sample.
+1. **HG-AUD:** Stays red until emit matches checklist + Felix sample (no fake green).
+2. Live OpenRouter / LangSmith optional; local path uses offline stub + tracing skip.
 
 ## Next
 
-1. Relaunch CloudAgent on `https://github.com/ckkenleungai-stack/Arpa` branch `oliver/w1-scaffold`
-2. Update this file with PR URL + final test count for Liam’s morning brief
+1. Felix HG-AUD against a real GP-1 export sample (W2–W3)
+2. P1 remaining: sources[] on GP-1 path, eval evidence file, interrupt↔resume pairing completeness, `?format=md`
 
